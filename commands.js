@@ -6,7 +6,7 @@
 use jaskis
 
 // 2. Create a collection called bounties
-db.jaskis.insertOne('bounties')
+db.createCollection('bounties')
 
 // ADD THE ANIMAL BOUNTIES
 // 1. Insert the given "Thanoceros" bounty object
@@ -21,10 +21,65 @@ db.bounties.insertOne({
 })
 
 // 2. Query for all bounties in the bounties collection
-n/a //we didnt have this step i think
+db.bounties.find()
 
 // 3. Insert many bounties at once using the given objects
-db.bounties.insertMany()
+db.bounties.insertMany([
+    {
+      "name": "Lokinkajou",
+      "species": "Kinkajou",
+      "location": "Tropical rainforest",
+      "wantedFor": "Partying too late at night",
+      "client": "White tiger",
+      "reward": 1000,
+      "captured": false
+    },
+    {
+      "name": "Nebullama",
+      "species": "Llama",
+      "location": "Grasslands",
+      "wantedFor": "Drinking all the water from the ocean",
+      "client": "Songbird",
+      "reward": 2500,
+      "captured": false
+    },
+    {
+      "name": "Polarwind",
+      "species": "Polar Bear",
+      "location": "Arctic",
+      "wantedFor": "Not hibernating",
+      "client": "Sabertooth",
+      "reward": 4000,
+      "captured": false
+    },
+    {
+      "name": "Wrecking Crows",
+      "species": "Crow",
+      "location": "Grasslands",
+      "wantedFor": "Cawing too loudly",
+      "client": "Red wolf",
+      "reward": 40000,
+      "captured": false
+    },
+    {
+      "name": "Grandhog",
+      "species": "Groundhog",
+      "location": "Woodlands",
+      "wantedFor": "Not coming out of the hole on time and prolonging winter",
+      "client": "Songbird",
+      "reward": 50000,
+      "captured": false
+    },
+    {
+      "name": "Grim Panda",
+      "species": "Giant Panda",
+      "location": "Temperate forest",
+      "wantedFor": "Eating all the bamboo",
+      "client": "Red wolf",
+      "reward": 5000,
+      "captured": false
+    }
+  ])
 
 // MANAGE THE DATABASE
 // Queries
@@ -52,3 +107,162 @@ db.bounties.deleteMany({client: "Songbird"})
 
 // 4. Update all captured statuses to true
 db.bounties.updateMany({captured: false}, {$set: {captured: true}})
+
+// BONUS
+// Queries
+// 1. Create a collection called scavengers and upload given documents.
+db.createCollection('scavengers')
+db.scavengers.insertMany([
+    {
+      "name": "Captain A'Meerkat",
+      "joined": new Date('2011-07-22'),
+      "power": "Thermoregulation",
+      "weapon": "Shovel",
+      "captured": [
+        {
+          "name": "Grim Panda",
+          "species": "Giant Panda",
+          "location": "Temperate forest",
+          "wantedFor": "Eating all the bamboo",
+          "client": "Red wolf",
+          "reward": 5000,
+          "captured": true
+        }
+      ]
+    },
+    {
+      "name": "The Hamster",
+      "joined": new Date('2011-07-22'),
+      "power": "Stealth",
+      "weapon": "Giant rolling ball",
+      "captured": [
+        {
+          "name": "Polarwind",
+          "species": "Polar Bear",
+          "location": "Arctic",
+          "wantedFor": "Not hibernating",
+          "client": "Sabertooth",
+          "reward": 10000,
+          "captured": true
+        }
+      ]
+    },
+    {
+      "name": "Thowl",
+      "joined": new Date('2011-07-22'),
+      "power": "Night vision",
+      "weapon": "Lasers",
+      "captured": [
+        {
+          "name": "Thanoceros",
+          "species": "Rhinoceros",
+          "location": "Grasslands",
+          "wantedFor": "Eating too much grass",
+          "client": "Songbird",
+          "reward": 10000,
+          "captured": true
+        },{
+          "name": "Polarwind",
+          "species": "Polar Bear",
+          "location": "Arctic",
+          "wantedFor": "Not hibernating",
+          "client": "Sabertooth",
+          "reward": 10000,
+          "captured": true
+        }
+      ]
+    },
+    {
+      "name": "Brown Recluse",
+      "joined": new Date('2011-07-22'),
+      "power": "Inciting fear into the heart of enemies",
+      "weapon": "Webs",
+      "captured": [
+        {
+          "name": "Thanoceros",
+          "species": "Rhinoceros",
+          "location": "Grasslands",
+          "wantedFor": "Eating too much grass",
+          "client": "Songbird",
+          "reward": 10000,
+          "captured": true
+        },{
+          "name": "Wrecking Crows",
+          "species": "Crow",
+          "location": "Grasslands",
+          "wantedFor": "Cawing too loudly",
+          "client": "Red wolf",
+          "reward": 40000,
+          "captured": true
+        }
+      ]
+    },
+    {
+      "name": "Falconeye",
+      "joined": new Date('2011-07-22'),
+      "power": "Flight",
+      "captured": [
+        {
+          "name": "Wrecking Crows",
+          "species": "Crow",
+          "location": "Grasslands",
+          "wantedFor": "Cawing too loudly",
+          "client": "Red wolf",
+          "reward": 40000,
+          "captured": true
+        }
+      ]
+    },
+    {
+      "name": "Scarlet Wolf",
+      "joined": new Date('2015-05-01'),
+      "power": "Hunting",
+      "captured": [
+        {
+          "name": "Grim Panda",
+          "species": "Giant Panda",
+          "location": "Temperate forest",
+          "wantedFor": "Eating all the bamboo",
+          "client": "Red wolf",
+          "reward": 5000,
+          "captured": true
+        }
+      ]
+    },
+    {
+      "name": "Black Jaguar",
+      "joined": new Date('2018-04-23'),
+      "power": "Camoflauge",
+      "captured": [
+        {
+          "name": "Grim Panda",
+          "species": "Giant Panda",
+          "location": "Temperate forest",
+          "wantedFor": "Eating all the bamboo",
+          "client": "Red wolf",
+          "reward": 5000,
+          "captured": true
+        },{
+          "name": "Thanoceros",
+          "species": "Rhinoceros",
+          "location": "Grasslands",
+          "wantedFor": "Eating too much grass",
+          "client": "Songbird",
+          "reward": 10000,
+          "captured": true
+        }
+      ]
+    }
+  ])
+
+// 2. Find all Scavengers who joined the team after December 31, 2011.
+db.scavengers.find({joined: {$gt: ISODate('2011-12-31')}})
+
+// 3. Find all Scavengers who helped catch Thanoceros.
+db.scavengers.find({"captured.name": 'Thanoceros'})
+
+// 4. Find all Scavengers who helped catch an animal bounty with a reward greater than $11000.
+db.scavengers.find({"captured.reward": {$gt: 11000}})
+
+// 5. Find all Scavengers that don't have a weapon.
+db.scavengers.find({weapon: null})
